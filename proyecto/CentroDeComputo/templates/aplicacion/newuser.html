@@ -1,0 +1,29 @@
+{% extends 'aplicacion/base.html' %}
+    {% block titulo %} Nuevo de Usuarios {% endblock %}
+    {% block contenido %}
+    <section class="animated col-lg-7 main container bounceInUp"  class="col-lg-7 main container">
+    <center>
+    <h2> <b>REGISTRAR USUARIOS</b></h2>
+    </center>
+    {% block content %}
+    <center>
+    <form class="form-vertical" action="" method="POST">{% csrf_token %} 
+    {% for field in formulario %}
+    <div>
+    	{{ field.errors }}
+        <hr>
+    	{{ field.label_tag }}
+        <hr>
+    	{{ field }}  
+        <hr>
+    </div>
+    {% endfor %}
+
+    <input class="btn btn-primary" type="submit" value="Guardar">	
+    </form>
+    <hr>
+    </center>
+    </section>
+    {% endblock %}
+
+{% endblock %}

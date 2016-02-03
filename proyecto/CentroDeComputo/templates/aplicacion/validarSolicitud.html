@@ -1,0 +1,94 @@
+{% extends 'aplicacion/base.html' %}
+{% block titulo %} Validar Solicitud {% endblock %}
+    {% block contenido %}
+
+
+    <section class=" col-lg-7 main container">
+        <article class="animated crear clearfix bounceIn"  class="crear clearfix">
+                    <div class="row panel panel-default" style="">
+                        <div class="pull-right">
+                            <label>lcomp1 <input type="checkbox" readonly="readonly" onclick="javascript: return false"></label>
+                            <label>lcomp2 <input type="checkbox" readonly="readonly" onclick="javascript: return false"></label>
+                            <label>lcomp3 <input type="checkbox" readonly="readonly" onclick="javascript: return false"></label>
+                            <label>lcomp4 <input type="checkbox" readonly="readonly" onclick="javascript: return false"></label>
+                        </div>
+                        <div class="pull-left">
+                            <label><input type="checkbox" readonly="readonly" onclick="javascript: return false"> Disponible</label> 
+                            <label><input type="checkbox" readonly="readonly" style="box-shadow: 0px 0px 7px #FF0000" onclick="javascript: return false"> Ocupado</label>
+                            <label><input type="checkbox" readonly="readonly" style="box-shadow: 0px 0px 7px #286090" onclick="javascript: return false"> Lcomp no Seleccionado</label>
+                        </div>
+                        
+                    </div>
+                    <div class="panel panel-default">
+                      
+                      <div class="panel-heading">
+                        <h3 class="panel-title"><b>Validar Solicitud</b></h3>
+                      </div>
+
+                      <div class="panel-body">
+                      <center>
+                            <!-- Comienza Form-->
+                            <form class="form-horizontal" method="POST" name="formValidar" role="form">
+                            {% csrf_token %}
+                                    <!-- Comienza Matriz-->
+                                    
+                                
+                                    <div id="TodosHorarios">
+                                      
+                                    </div>
+                                    <script type="text/javascript">pintarMatriz("Horarios_Lcomp");</script>
+                                    <hr>
+                                    <button class="pull-right btn btn-primary btn-lg" type="submit" src="validarSolicitud">ENVIAR SOLICITUD</button>
+
+                                    {% for NO in labNoUsados %}
+        
+
+                                        <input type="hidden" id="Motto" value="{{NO}}">
+
+                                        <script type="text/javascript">NoUsado();</script>
+                                     {% endfor%}
+
+                                    {% for Uso in usado %}
+                                              
+                                            
+                                              <!-- 
+                                                             <label>{{Uso.hora}} </label>
+                                              <script type="text/javascript">alert({{Uso.hora}}+String({{Uso.dia}})+{{Uso.fechaUso.laboratorio.codigo}});</script>      
+                                            <div class="row">
+                                                <input type="buton" class="btn-primary" value="{{Uso.fechaUso.laboratorio.codigo}}"/>
+                                            </div>
+                                            <div class="row">
+                                                <input type="buton" class="btn-danger" value="{{Uso.hora}}"/>    
+                                            </div>
+                                            <div class="row">
+                                                <input type="buton" class="btn-warning" value="{{Uso.dia}}"/>    
+                                            </div> -->
+                                            
+
+
+                                            <input type="hidden" id="A" value="{{Uso.fechaUso.laboratorio.codigo}}"/>
+                                            <input type="hidden" id="B" value="{{Uso.hora}}"/>
+                                            <input type="hidden" id="C" value="{{Uso.dia}}"/>
+
+
+                                            <script type="text/javascript">bloquearOcupados();</script>
+
+                                     {% endfor %}
+
+
+
+
+                            </form>
+                           
+
+                    </center>
+
+                            
+
+                      </div>
+                    </div>
+        </article>
+                      
+                    
+    </section>
+ {% endblock %}

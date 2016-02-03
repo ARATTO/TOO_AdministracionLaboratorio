@@ -1,0 +1,108 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title> {% block titulo %} {% endblock %}</title>
+    
+    <link href="{{STATIC_URL}}css/animate.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{STATIC_URL}}css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{STATIC_URL}}css/crearSolicitud.css">
+    <link rel="stylesheet" href="{{STATIC_URL}}css/validarSolicitud.css">
+    <link rel="stylesheet" href="{{STATIC_URL}}css/gestionarSolicitud.css">
+    <link rel="stylesheet" href="{{STATIC_URL}}css/choqueSolicitud.css">
+    <link rel="stylesheet" href="{{STATIC_URL}}css/jquery-ui-1.7.2.custom.css" />
+   <script src="{{STATIC_URL}}js/jquery.js"></script>
+    <script src="{{STATIC_URL}}js/bootstrap.min.js"></script>
+    <script src="{{STATIC_URL}}js/crearSolicitud.js"></script>
+    <script src="{{STATIC_URL}}js/validarSolicitud.js"></script>
+    <script src="{{STATIC_URL}}js/gestionarSolicitud.js"></script>
+    <script src="{{STATIC_URL}}js/choqueSolicitud.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/jquery-ui.min.js"></script>
+</head>
+
+<body>
+    <!-- Barra -->
+    <header>
+        <nav class="navbar navbar-inverse navbar-static-top" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navegacion-lab">
+                        <span class="sr-only">Desplegar / Ocultar Menu</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                
+                <!-- Inicia Menu -->
+                <div class="collapse navbar-collapse" id="navegacion-lab">
+                    <ul class="nav navbar-nav">
+                        {% if user.is_authenticated%}
+                            <li><a href="http://127.0.0.1:8000/"> BIENVENIDO, {{user.username}} </a></li>
+                        {%else%}
+                            <li><a href="http://127.0.0.1:8000/login/"> Inicia Sesion </a></li>
+                            <!--<li><a href=""> Bienvenido </a></li> -->
+                        {% endif%}
+
+                        <li><a href="http://127.0.0.1:8000/crearSolicitud/"> Crear Solicitud </a></li>
+                        <li><a href="http://127.0.0.1:8000/consultar/"> Consultar Solicitud </a></li>
+                        
+                        {% if perms.aplicacion.administrador %}
+                            <li><a href="http://127.0.0.1:8000/gestionarSolicitud/"> Gestionar Solicitud </a></li>
+                            <li><a href="http://127.0.0.1:8000/newuser/"> Registrar Usuarios </a></li>
+                            <li><a href="{% url 'pdf' %}"> Imprimir </a></li>
+                        {% endif %}
+
+                        {% if user.is_authenticated %}
+                            <li><a href="http://127.0.0.1:8000/logout/"> Salir </a></li>
+                        {% endif %}
+                        
+                    </ul>
+                </div>
+                
+                
+            </div>
+        </nav>
+    </header>
+    <!-- Jumbotron-->
+    <section class="animated jumbotron fadeIn" class="jumbotron">
+        <div class="container text-center">
+            <h1>Administracion de Laboratorio</h1>
+            <p>SCRUM</p>
+        </div>
+    </section>
+    
+    
+    
+    <section class="col-lg-2">
+    </section>
+    
+    {% block contenido %}
+        {% endblock %}
+
+<section class="col-lg-3">
+    </section>
+    
+    <footer>
+        <div class="container">
+        <br>
+            <div class="row">
+                <div class="col-xs-6">
+                    <label class="control-label"><b>Administracion de Laboratorio TOO-115</b></label>
+                </div>
+                <div class="col-xs-6 text-right">
+                    <label class="control-label"><b>FIA-UES 2015</b></label>
+                </div>
+
+            </div>
+        </div>
+    </footer>
+    
+
+
+</body>
+</html>

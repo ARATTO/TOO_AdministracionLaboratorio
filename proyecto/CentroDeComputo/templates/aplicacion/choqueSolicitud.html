@@ -1,0 +1,151 @@
+{% extends 'aplicacion/base.html' %}
+{% block titulo %} Choques Solicitud {% endblock %}
+{% block contenido %}
+
+    <section class="col-lg-7 main container">
+    <center>
+    	<article class="animated crear clearfix bounceIn" class="crear clearfix">
+					<div class="panel panel-default">
+                    
+                      <div class="panel-heading">
+                        <h3 class="panel-title"><b>Solicitud por Gestionar</b></h3>
+                      </div>
+                      
+                      <div class="panel-body">
+
+                      			<form class="form-horizontal"  method="POST" name="tablaActual" onsubmit="return validarGestion()" role="search">
+                                {% csrf_token %}
+                                <input type="hidden" name="form1" id="form1" value=1> 
+                                	<table class="tableActual table-bordered table-striped bs-table">
+					                      <thead>
+					                        <tr>
+					                          <th>
+					                            ID
+					                          </th>
+					                          <th>
+					                            Razon
+					                          </th>
+					                          <th>
+					                           	Descripcion
+					                          </th>
+					                          <th>
+					                           	Fecha Creacion
+					                          </th>
+					                        </tr>
+					                      </thead>
+
+					                      <tbody>
+					                      		<!--"SolActual" Nombre objeto y de solicitud actual  -->
+                                				{% for Sol in SolActual %}
+							                        <tr>
+							                          <td>
+							                              <label>{{Sol.id}}</label>
+							                          </td>
+							                          <td>
+							                              <label>{{Sol.tipo}}</label>
+							                          </td>
+							                          <td>
+							                              <label>{{Sol.Descripcion}}</label>
+							                          </td>
+							                          <td>
+							                              <label>{{Sol.fechaDeCreacion}}</label>
+							                          </td>
+							                        </tr>
+							                     {% endfor %}
+					                      </tbody>
+					                </table>
+					                <center>
+					                <br>
+					                	<label>Razon Sentencia de Solicitud </label>
+					                	<br>
+					                	<textarea name="descripcionRazon" cols="50" rows="6"></textarea>
+					                <br>
+						                <div class="">
+						                	
+						                	<label>APROBAR  <input type="radio" name="sentencia" id="sentencia" value="Aprobar"> </label>
+						                	<label>NEGAR  <input type="radio" name="sentencia" id="sentencia" value="Negar"> </label>
+						                	
+						                </div>
+					                <br>
+
+					                <button class="btn btn-primary btn-lg" type="submit" src="gestionarSolicitud">CONTINUAR</button>
+					                </center>
+
+                                </form>
+
+                               	 <hr>
+                               	 <div class="panel panel-default">
+				                    
+				                      <div class="panel-heading">
+				                        <h3 class="panel-title"><b>Solicitudes en conflicto con Solicitud Actual</b></h3>
+				                      </div>
+				                      
+				                      <div class="panel-body">
+
+				                 <form class="form-horizontal"  method="POST" name="tablaChoque" onsubmit="return validarSeleccionChoque()" role="search">
+                                {% csrf_token %}
+                                <input type="hidden" name="form1" id="form1" value=2> 
+                                	<table class="table table-bordered table-striped bs-table">
+					                      <thead>
+					                        <tr>
+					                          <th>
+					                            ID
+					                          </th>
+					                          <th>
+					                            Razon
+					                          </th>
+					                          <th>
+					                            Estado
+					                          </th>
+					                          <th>
+					                            Fecha de Creacion
+					                          </th>
+					                          <th>
+					                           	Seleccionar
+					                          </th>
+					                          
+					                        </tr>
+					                      </thead>
+
+					                      <tbody>
+					                      		<!--"choque" Nombre objeto y "solicitud" nombre del objeto recibido  -->
+                                				{% for choque in solicitud %}
+							                        <tr>
+							                          <td>
+							                              <label>{{choque.id}} </label>
+							                          </td>
+							                          <td>
+							                              <label>{{choque.tipo}} </label>
+							                          </td>
+							                          <td>
+							                              <label>{{choque.estado}} </label>
+							                          </td>
+							                          <td>
+							                              <label>{{choque.fechaDeCreacion}} </label>
+							                          </td>
+							                          <td>
+							                              <label><input type="radio" name="nuevo" id="nuevo" value="{{choque.id}}"> </label>
+							                          </td>
+							                          
+							                        </tr>
+						                        {% endfor %}
+					                      </tbody>
+					                </table>
+					                <!-- Envia nuevo objeto de Solicitud-->
+					                <center>
+					                <button class="pull-right btn btn-primary btn-lg" type="submit" src="choqueSolicitud">VERIFICAR SELECCIONADO</button>
+					                </center>
+
+                                </form>
+
+				                      </div>
+				                 </div>
+                                
+                      </div>
+                    </div>
+        </article>
+
+
+        </center>
+    </section>
+{% endblock %}

@@ -1,0 +1,32 @@
+@charset "utf-8";
+/* CSS Document */
+
+/*HEADER*/
+.navbar{
+	margin-bottom:0;
+}
+
+.jumbotron{
+	background:#509D95;
+	color:#fff;
+	padding:20px 0;
+}
+input[type=checkbox]{
+	border-radius: 43px 43px 43px 43px;
+	-moz-border-radius: 43px 43px 43px 43px;
+	-webkit-border-radius: 43px 43px 43px 43px;
+	padding: 50px;
+	border: 2px solid #000000;
+	margin-left: 5px;
+}
+/*BODY*/
+/*
+input[type="checkbox"] {
+	 box-shadow: 2px 2px 5px #FF0000;
+	/*filter: shadow(color=#FF0000, direction=135, strength=2);
+}
+*/
+/*FOOTER*/
+footer{
+	
+}

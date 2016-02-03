@@ -1,0 +1,79 @@
+{% extends 'aplicacion/base.html' %}
+{% block titulo %} Gestionar Solicitud {% endblock %}
+{% block contenido %}
+    <section class="col-lg-7 main container">
+    <center>
+    	<article class="animated crear clearfix bounceIn"  class="crear clearfix">
+					<div class="panel panel-default">
+                    
+                      <div class="panel-heading">
+                        <h3 class="panel-title"><b>Solicitudes Pendientes</b></h3>
+                      </div>
+                      
+                      <div class="panel-body">
+                                <form class="form-horizontal" method="POST" name="tablaGestionar" onsubmit="return validarSeleccion()" role="search">
+                                {% csrf_token %}
+                                
+                                	<table class="table table-bordered table-striped bs-table">
+					                      <thead>
+					                        <tr>
+					                          <th>
+					                            Solicitante
+					                          </th>
+					                          <th>
+					                            Razon
+					                          </th>
+					                           <th>
+					                           	Estado
+					                          </th>
+					                           <th>
+					                           	Fecha De Creacion
+					                          </th>
+					                          <th>
+					                           	
+					                          </th>
+					                          
+					                        </tr>
+					                      </thead>
+
+					                      <tbody>
+					                      		<!--"Sol" Nombre objeto y "solicitud" nombre del objeto recibido  -->
+                                				{% for Sol in solicitud %}
+							                        <tr>
+							                          <td>
+							                              <label>{{Sol.coordinador.nombre}} </label>
+							                          </td>
+							                          <td>
+							                              <label>{{Sol.tipo}} </label>
+							                          </td>
+							                          <td>
+							                              <label>{{Sol.estado}} </label>
+							                          </td>
+							                          <td>
+							                              <label>{{Sol.fechaDeCreacion}} </label>
+							                          </td>
+							                          <td>
+							                          		<!--ES MUY POSIBLE QUE NO FUNCIONE PORQUE NO SE COMO RECONOCE LOS NOMBRES Y LOS ID
+							                          		SI TE FIJAS LOS DEJE DE DOS FORMAS DIFERENTES PARA SABER CON CUAL LO ASIGNA   -->
+							                              <label><input type="radio" name="actual" id="actual" value="{{Sol.id}}"> </label>
+							                          </td>
+							                          
+							                        </tr>
+						                        {% endfor %}
+					                      </tbody>
+					                </table>
+
+					                
+
+                                
+                      </div>
+                    </div>
+        </article>
+
+
+        </center>
+        <button class="pull-right btn btn-primary btn-lg" type="submit" src="choqueSolicitud">COMPROBAR APROBACION</button>
+        </form>
+        <br>
+    </section>
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends 'aplicacion/base.html' %}
+{% block titulo %} Consultar {% endblock %}
+    {% block contenido %}
+<section class="col-lg-7 main container">
+<center>
+<article class="animated crear clearfix bounceIn"  class="crear clearfix">
+          <div class="panel panel-default">
+                    
+                      <div class="panel-heading">
+                        <h3 class="panel-title"><b>Sus Solicitudes Enviadas</b></h3>
+                      </div>
+
+<form class="form-horizontal"  method="POST" name="formConsultar"  role="form">
+        {% csrf_token %}                         
+    <table class="table table-bordered table-striped bs-table">
+
+        <colgroup>
+           <col />
+           <col />
+           <col />
+        </colgroup>
+
+            <thead>
+               <tr>
+                 <th scope="col">ID</th>
+                 <th scope="col">Estado</th>
+                 <th scope="col"># Laboratorio(s)</th>
+                 <th scope="col">Descripcion</th>
+                 <th scope="col">Observacion de Administrador</th>
+               </tr>
+            </thead>
+
+            <tbody>
+                {% for Sol in solicitudes %}
+               <tr>
+                 <td><label>{{Sol.id}} </label></td>
+                 <td><label>{{Sol.estado}} </label></td>
+                 <td><label>{{Sol.numeroLaboratorios}} </label></td>
+                 <td><label>{{Sol.Descripcion}} </label></td>
+                 <td><label>{{Sol.observacionAdministrador}} </label></td>
+                 <td><label><input type="radio" name="eliminar" id="eliminar" value="{{Sol.id}}"> </label></td>
+               </tr>
+               {% endfor %}
+            </tbody> 
+
+     </table>
+
+
+     
+     </center>
+     <button class="pull-right btn btn-danger btn-lg" type="submit" src="consultarSolicitud">ELIMINAR SOLICITUD</button>
+</form>
+    <br>
+</section>
+
+
+{% endblock %}

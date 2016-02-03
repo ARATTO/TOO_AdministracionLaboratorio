@@ -1,0 +1,35 @@
+{% extends 'aplicacion/base.html' %}
+    {% block titulo %} Iniciar sesion {% endblock %}
+    {% block contenido %}
+    <section class="animated col-lg-7 main container bounceInUp" class="col-lg-7 main container">
+    <center>
+    <h2><b> INICIAR SESION</b></h2>
+    {% block content %}
+    {% if message %}
+    <b> {{ message }}</b>
+    {% endif %}
+    <form class="form-vertical" action="" method="POST">{% csrf_token %} 
+    {% for field in formulario %}
+    <div>
+        {{ field.errors }}
+        <hr>
+        {{ field.label_tag }}
+        <hr>
+        {{ field }}  
+        <hr>
+    </div>
+    {% endfor %}
+    {% if next %}
+    <input type="hidden" name"next" value="{{ next }}">
+    {% else %}
+    <input type="hidden" name"next" value="http://127.0.0.1:8000/">
+    {% endif %}
+
+    <input class="btn btn-primary" type="submit" value="ENTRAR">    
+    <hr>
+    </form>
+    </center>
+    </section>
+    {% endblock %}
+
+{% endblock %}

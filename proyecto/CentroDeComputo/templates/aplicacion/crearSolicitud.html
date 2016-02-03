@@ -1,0 +1,129 @@
+{% extends 'aplicacion/base.html' %}
+{% block titulo %} Crear Solicitud {% endblock %}
+    {% block contenido %}
+    <section class="col-lg-7 main container">
+
+            	<article class="animated crear clearfix bounceIn" class="crear clearfix">
+					<div class="panel panel-default">
+                    
+                      <div class="panel-heading">
+                        <h3 class="panel-title"><b>Formulario para Crear Solicitud</b></h3>
+                      </div>
+                      
+                      <div  class="panel-body">
+                                <form class="form-horizontal"  method="POST" name="formCrear" onsubmit="return validarForm()" role="form">
+                                			{% csrf_token %}	
+                                    <!-- Inicio Formulario-->
+                                    <div class="row"><hr>
+                                        <div class="form-group">
+                                        <!--Codigo Materia -->
+                                            <label for="CodMateria" class="col-xs-4 control-label">Codigo Materia</label>
+                                            <div class="col-xs-4">
+                                                <select class="form-control" name="codMateria">
+                                                  <option>ANS115</option>
+                                                  <option>API115</option>
+                                                  <option>BAD115</option>
+                                                  <option>DSI115</option>
+                                                  <option>DSI215</option>
+                                                  <option>ESD115</option>
+                                                  <option>HDP115</option>
+                                                  <option>IAI115</option>
+                                                  <option>MEP115</option>
+                                                  <option>MIP115</option>
+                                                  <option>MSM115</option>
+                                                  <option>PRN115</option>
+                                                  <option>PRN215</option>
+                                                  <option>PRN315</option>
+                                                  <option>SGI115</option>
+                                                  <option>TOO115</option>
+                                                  <option>TPI115</option>
+
+                                                  <option>Otro</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!--Laboratorios a Solicitar -->
+                                    <div class="row"><hr>
+                                        <div class="form-group">
+                                            <label for="lab" class="col-xs-4 control-label">Laboratorios a Solicitar</label>
+                                            <div class="col-xs-4 checkbox">
+                                                <label>
+                                                  <input type="checkbox" name="lab1"> LComp-1 
+                                                </label>
+                                                <label>
+                                                  <input type="checkbox" name="lab2"> LComp-2 
+                                                </label>
+                                                <label>
+                                                  <input type="checkbox" name="lab3"> LComp-3 
+                                                </label>
+                                                <label>
+                                                  <input type="checkbox" name="lab4"> LComp-4 
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    
+                                    <!-- Rangos FechaInicio-->
+                                    <div class="row"><hr>
+                                        <div class="form-group">
+                                            <label for="fechaInicio" class="col-xs-4 control-label">Fecha Inicio</label>
+                                            <div class="col-xs-4">
+                                                 <input class="form-control" type="text" name="fechaInicio" id="fechaInicio" readonly size="12" />
+                                            </div>
+            
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Rangos FechaFin-->
+                                    <div class="row"><br>
+                                        <div class="form-group">
+                                            <label for="fechaFinal" class="col-xs-4 control-label">Fecha Final</label>
+                                            <div class="col-xs-4">
+                                                <input class="form-control" type="text" name="fechaFinal" id="fechaFinal" readonly size="12" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    
+                                    <!-- Razon de Solicitud-->
+                                    <div class="row"><hr>
+                                        <div class="form-group">
+                                        <!--Codigo Materia -->
+                                            <label for="razonSolicitud" class="col-xs-4 control-label">Razon de Solicitud</label>
+                                            <div class="col-xs-4">
+                                                <select class="form-control" name="razonSolicitud">
+                                                  <option>Clases</option>
+                                                  <option>Cursos</option>
+                                                  <option>Otro</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Razon de Solicitud-->
+                                    <div class="row"><hr>
+                                        <div class="form-group">
+                                            <!--Descripcion-->
+                                            
+                                                <label for="descripcionRazon" class="col-xs-4 control-label">Descripcion</label>
+                                                <textarea class="col-xs-4" name="descripcionRazon" rows="3"></textarea>
+            
+                                        </div>
+                                    </div>
+
+                                    <hr>
+                                    <center>
+                                    <button class="btn btn-primary btn-lg" name="btn_validar" id="btn_validar" type="submit">VALIDAR SOLICITUD</button>
+                                    </center>
+                            </form>
+                      </div>
+                    </div>	                
+                	
+                </article>
+
+
+    </section>
+{% endblock %}

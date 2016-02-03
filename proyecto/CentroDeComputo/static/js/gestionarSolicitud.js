@@ -1,0 +1,3 @@
+function validarSeleccion(){
+	return true;
+}
